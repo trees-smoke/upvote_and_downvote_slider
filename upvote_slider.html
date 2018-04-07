@@ -1,0 +1,76 @@
+<html>
+<head><title>Upvote-Downvote Slider </title>
+<h1></h1>
+<p></p>
+Link:<br>
+<input type="text" id="link" size=100><br>
+
+-100 <input type="range" id=voter min="-100" max="100" step="0.5"      
+onchange="showValue(this.value)" /> 100
+<br><span id="value">Vote Value : 0<br /></span>
+<br><br />
+
+
+<input id="Start" type="button" value=" Send Vote " onClick=send_vote()>
+<p id="data"></p>
+<style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 10;
+   width: 100%;
+   background-color: blue;
+   color: white;
+   text-align: center;
+}
+</style>
+
+</head>
+
+<script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
+<script language="JavaScript">
+
+
+steem.api.setOptions({ url: 'https://api.steemit.com' });
+
+// Function to see the value of the slider
+function showValue(newValue)
+{
+document.getElementById("value").innerHTML="Vote Value : "+newValue+"<br />";
+}
+
+// vote sending function
+function send_vote(){
+var link;
+var user;
+var permlink;
+
+var posting_wif= "Your posting WIF"; //enter your posting key here, not the active key or user key-only posting key
+var voter="your steemit user name"; // your name will be here - without @ sign
+
+var weight=document.getElementById("voter").value*100;// put the voting weight in the variable
+link =document.getElementById("link").value;//get the url from the textbox
+
+var perm = link.split("/");//split the url to get permlink and user
+var length_perm=perm.length;
+permlink=perm[length_perm-1];//the permlink is the last element after "/" sign 
+user_raw=perm[length_perm-2];//form the array to find the user to be voted - user is found at the one before final element of array 
+usmat=user_raw.split("@");//we need the username without @sign, so split the raw array
+user=usmat[usmat.length-1];//user name is the last element of the array
+//Steem API function to broadcast vote
+steem.broadcast.vote(posting_wif, voter, user, permlink, weight, function(err, result) {
+  console.log(err, result);
+  // a simple alert to inform voting is done.
+  window.alert("Voting complete with "+weight/100+" % weight");
+});
+}
+</script>
+
+<body>
+
+<div class="footer">
+<p>made as tutorial by @firedream </p>
+</div>
+
+</body>
+</html>
