@@ -19,7 +19,7 @@ onchange="showValue(this.value)" /> 100
    left: 0;
    bottom: 10;
    width: 100%;
-   background-color: blue;
+   background-color: green;
    color: white;
    text-align: center;
 }
@@ -46,7 +46,7 @@ var user;
 var permlink;
 
 var posting_wif= "Your posting WIF"; //enter your posting key here, not the active key or user key-only posting key
-var voter="your steemit user name"; // your name will be here - without @ sign
+var voter="your Smoke user name"; // your name will be here - without @ sign
 
 var weight=document.getElementById("voter").value*100;// put the voting weight in the variable
 link =document.getElementById("link").value;//get the url from the textbox
@@ -69,7 +69,7 @@ steem.broadcast.vote(posting_wif, voter, user, permlink, weight, function(err, r
 <body>
 
 <div class="footer">
-<p>vote @mister-meeseeks for witness </p>
+<p>Vote @mister-meeseeks for Witness! </p>
 </div>
 
 </body>
