@@ -27,11 +27,11 @@ onchange="showValue(this.value)" /> 100
 
 </head>
 
-<script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
+<script src="https://explore.smoke.io/assets/smokejs.min.js"></script>
 <script language="JavaScript">
 
 
-steem.api.setOptions({ url: 'https://api.steemit.com' });
+steem.api.setOptions({ url: 'ws://104.248.168.86:8090/' });
 
 // Function to see the value of the slider
 function showValue(newValue)
@@ -69,7 +69,7 @@ steem.broadcast.vote(posting_wif, voter, user, permlink, weight, function(err, r
 <body>
 
 <div class="footer">
-<p>made as tutorial by @firedream </p>
+<p>vote @mister-meeseeks for witness </p>
 </div>
 
 </body>
