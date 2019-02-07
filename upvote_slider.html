@@ -1,7 +1,12 @@
 <html>
-<head><title>Upvote-Downvote Slider </title>
+<head><title>Upvote-Downvote Slider</title>
 <h1></h1>
 <p></p>
+<form>
+Username:<br>
+<input type="text" id="username" size=100><br>
+Posting Key:<br>
+<input type="text" id="password" size=100><br>
 Link:<br>
 <input type="text" id="link" size=100><br>
 
@@ -11,7 +16,8 @@ onchange="showValue(this.value)" /> 100
 <br><br />
 
 
-<input id="Start" type="button" value=" Send Vote " onClick=send_vote()>
+<button id="vote">Send Vote!</button>
+</form>
 <p id="data"></p>
 <style>
 .footer {
@@ -39,14 +45,17 @@ function showValue(newValue)
 document.getElementById("value").innerHTML="Vote Value : "+newValue+"<br />";
 }
 
+const voteButton = document.getElementById('vote')
+
 // vote sending function
-function send_vote(){
+voteButton.onclick = function send_vote(event){
+event.preventDefault()
 var link;
 var user;
 var permlink;
 
-var posting_wif= "Your posting WIF"; //enter your posting key here, not the active key or user key-only posting key
-var voter="your Smoke user name"; // your name will be here - without @ sign
+var posting_wif=document.getElementById("password").value; //enter your posting key here, not the active key or user key-only posting key
+var voter=document.getElementById("username").value; // your name will be here - without @ sign
 
 var weight=document.getElementById("voter").value*100;// put the voting weight in the variable
 link =document.getElementById("link").value;//get the url from the textbox
